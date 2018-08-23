@@ -9,7 +9,13 @@ import Icon from '../components/icons/Icon';
 import { Column, Row } from '../components/layout';
 import { Monospace } from '../components/text';
 import { withHideSplashScreenOnMount, withSafeAreaViewInsetValues } from '../hoc';
-import { colors, fonts, padding } from '../styles';
+import { colors, fonts, padding, position } from '../styles';
+
+const Container = styled(Column)`
+  ${position.size('100%')}
+  background-color: ${colors.blue};
+  flex: 1;
+`;
 
 const ActivityScreen = (props) => {
 
