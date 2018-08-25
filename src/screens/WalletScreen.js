@@ -55,6 +55,8 @@ const WalletScreen = ({
   showShitcoins,
   uniqueTokens,
 }) => {
+  console.log('ASSEETS', accountInfo.assets);
+
   const sections = {
     balances: {
       data: sortAssetsByNativeAmount(accountInfo.assets, showShitcoins),

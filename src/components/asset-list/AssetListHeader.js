@@ -29,9 +29,11 @@ const AssetListHeader = ({
         <H1>{title}</H1>
         {contextMenuOptions && (<ContextMenu {...contextMenuOptions} />)}
       </Row>
-      <Monospace size="large" weight="semibold">
-        {`${totalValue}`}
-      </Monospace>
+      {!!totalValue && (
+        <Monospace size="large" weight="semibold">
+          {totalValue}
+        </Monospace>
+      )}
     </Header>
     <Divider />
   </Fragment>

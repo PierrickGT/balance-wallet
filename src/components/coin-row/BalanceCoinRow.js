@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import styled from 'styled-components/primitives';
 import { colors } from '../../styles';
-import { Monospace } from '../text';
 import BalanceText from './BalanceText';
 import CoinName from './CoinName';
 import CoinRow from './CoinRow';
-
-const BottomRowText = styled(Monospace).attrs({ size: 'smedium' })`
-  color: ${({ color }) => (color || colors.blueGreyLight)};
-`;
+import BottomRowText from './BottomRowText';
 
 const formatPercentageString = percentString => (
   percentString

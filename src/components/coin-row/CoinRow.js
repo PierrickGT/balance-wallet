@@ -32,8 +32,8 @@ const CoinRow = ({
         {topRowRender({
           address,
           balance,
-          native,
           name,
+          native,
           symbol,
         })}
       </Row>
@@ -41,8 +41,8 @@ const CoinRow = ({
         {bottomRowRender({
           address,
           balance,
-          native,
           name,
+          native,
           symbol,
         })}
       </Row>
