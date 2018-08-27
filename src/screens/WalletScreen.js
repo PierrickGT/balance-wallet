@@ -55,7 +55,7 @@ const WalletScreen = ({
   showShitcoins,
   uniqueTokens,
 }) => {
-  console.log('ASSEETS', accountInfo.assets);
+  // console.log('ASSEETS', accountInfo.assets);
 
   const sections = {
     balances: {

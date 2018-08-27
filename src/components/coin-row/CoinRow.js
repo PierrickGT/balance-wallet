@@ -17,33 +17,24 @@ const Content = styled(Column)`
 `;
 
 const CoinRow = ({
-  address,
-  balance,
   bottomRowRender,
-  name,
-  native,
   symbol,
   topRowRender,
+  ...props
 }) => (
   <Container align="center">
     <CoinIcon symbol={symbol} />
     <Content justify="space-between">
       <Row align="center" justify="space-between">
         {topRowRender({
-          address,
-          balance,
-          name,
-          native,
           symbol,
+          ...props,
         })}
       </Row>
       <Row align="center" justify="space-between">
         {bottomRowRender({
-          address,
-          balance,
-          name,
-          native,
           symbol,
+          ...props,
         })}
       </Row>
     </Content>

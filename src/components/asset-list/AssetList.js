@@ -56,7 +56,7 @@ const AssetList = ({
           keyExtractor={assetListKeyExtractor}
           renderItem={AssetListItem}
           renderSectionFooter={AssetListFooter}
-          renderSectionHeader={headerProps => <AssetListHeader {...headerProps} />}
+          renderSectionHeader={({ section }) => <AssetListHeader {...section} />}
           scrollIndicatorInsets={{
             bottom: safeAreaInset.bottom,
             top: AssetListHeader.height,

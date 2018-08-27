@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, groupBy } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SectionList } from 'react-native';
@@ -10,8 +10,10 @@ import { ButtonPressAnimation } from '../components/buttons';
 import Icon from '../components/icons/Icon';
 import { Column, Row } from '../components/layout';
 import { Monospace } from '../components/text';
+import { ListHeader } from '../components/list';
 import { colors, fonts, padding, position } from '../styles';
 import { TransactionCoinRow } from '../components/coin-row';
+import { sortList } from '../utils';
 
 import {
   AssetListFooter,
@@ -39,10 +41,10 @@ const sortTransactions = (transactions) => {
   const sortedTransactions = transactions.map((transaction) => {
     const { asset, native, value, ...tx } = transaction;
     // console.log('TRANSACTION', tx);
-    console.log('transaction', transaction);
+    // console.log('transaction', transaction);
 
     return {
-      // ...tx,
+      ...tx,
       balance: value,
       name: asset.name,
       native: {
@@ -50,13 +52,50 @@ const sortTransactions = (transactions) => {
       },
       symbol: asset.symbol,
     };
-    // {
-    //   balance: tx.value,
-    // };
   });
 
-  return sortedTransactions;
-}
+  return sortList(sortedTransactions, 'timestamp.ms');
+};
+
+// const buildTransactionSections = (transactions) => {
+//   const sections = {
+//     pending: {},
+//     today: {},
+//     yesterday: {},
+//     thisMonth: {},
+//     months: [],
+//     monthYears: [],
+//   };
+
+//   transactions.map(tx => {
+//     if (tx.pending) {
+//       sections.pending = {
+
+//       }
+//     }
+//   });
+//   const txByPending = groupBy(transactions, ({ pending }) => pending);
+
+//   if (txByPending.true) {
+//     pendingSection = {
+//       data: txByPending.true,
+//       renderItem: TransactionCoinRow,
+//       title: 'Pending',
+//     };
+//   }
+
+//   console.log('txByPending', txByPending);
+
+//   // {
+//   //     data: ,
+//   //     renderItem: TransactionCoinRow,
+//   //     title: 'Yesterday',
+//   //   }
+//   return sections;
+//   // [
+//   //   pendingSection,
+//   // ];
+// };
 
 const ActivityScreen = ({ fetchingTransactions, transactions, ...props }) => {
   const sections = {
@@ -66,8 +105,11 @@ const ActivityScreen = ({ fetchingTransactions, transactions, ...props }) => {
       title: 'Yesterday',
     },
   };
+  // const test = buildTransactionSections(sortTransactions(transactions));
 
-  console.log('fetchingTransactions', fetchingTransactions);
+  // console.log('fetchingTransactions', fetchingTransactions);
+  // console.log('test', test);
+
 
   return (
     <Container>
@@ -83,7 +125,7 @@ const ActivityScreen = ({ fetchingTransactions, transactions, ...props }) => {
           keyExtractor={assetListKeyExtractor}
           renderItem={AssetListItem}
           renderSectionFooter={AssetListFooter}
-          renderSectionHeader={headerProps => <AssetListHeader {...headerProps} />}
+          renderSectionHeader={({ section }) => <ListHeader {...section} />}
           sections={[sections.balances]}
         />
       )}
